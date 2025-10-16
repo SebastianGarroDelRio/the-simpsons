@@ -1,11 +1,60 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/sections/Hero.astro";
+import Info from "@/sections/Info.astro";
+import Footer from "@/sections/Footer.astro";
+import "@/styles/global.css";
 ---
 
-<Layout>
-	<Welcome />
+<Layout tittle="The Simpsons Quotes">
+	<Hero />
+	<main style="text-align: center; margin: 2rem auto; max-width: 900px;">
+		<Info />
+	</main>
+	<Footer />
 </Layout>
+
+<script is:inline>
+	let currentPage = 1;
+
+	async function fetchCharacters() {
+		const response = await fetch(
+			`https://thesimpsonsapi.com/api/characters?page=${currentPage}`,
+		);
+		const data = await response.json();
+
+		const container = document.getElementById("characters");
+
+		data.results.forEach((char) => {
+			const div = document.createElement("div");
+			div.style.border = "2px solid #fdd835";
+			div.style.borderRadius = "10px";
+			div.style.padding = "1rem";
+			div.style.background = "#fff8e1";
+			div.style.textAlign = "center";
+			div.style.width = "200px";
+			div.style.margin = "1rem";
+
+			div.innerHTML = `
+        <img src="https://cdn.thesimpsonsapi.com/500${char.portrait_path}" 
+		alt="${char.name}" 
+		style="width: 100%; border-radius: 10px;">
+        <h3>${char.name}</h3>
+        <p><strong>Edad:</strong> ${char.age ?? "Desconocida"}</p>
+    <p><strong>Ocupación:</strong> ${char.occupation ?? "Desconocida"}</p>
+      `;
+			container.appendChild(div);
+		});
+
+		// Si hay siguiente página, habilitamos el botón
+		document.getElementById("loadMore").disabled = !data.next;
+	}
+
+	document.getElementById("loadMore").addEventListener("click", () => {
+		currentPage++;
+		fetchCharacters();
+	});
+
+	// Cargar primera página
+	fetchCharacters();
+</script>
