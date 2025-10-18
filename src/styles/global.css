@@ -1,12 +1,1 @@
 @import "tailwindcss";
-
-@font-face {
-    font-family: "Simpsonfont";
-    src: url("/public/fonts/Simpsonfont\ DEMO.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
-}
-
-body {
-    font-family: "Simpsonfont", sans-serif;
-}

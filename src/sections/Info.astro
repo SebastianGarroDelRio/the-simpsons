@@ -1,7 +1,37 @@
-<h1 class="uppercase">Personajes de Los Simpsons</h1>
-<div
-    id="characters"
-    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem;"
->
-</div>
-<button id="loadMore" style="margin-top: 2rem;">Cargar más</button>
+<section class="flex flex-col items-center justify-center p-8 z-10">
+    <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 text-simpsons-negro">
+        ¿Te apetece una ración de sabiduría Springfield?
+    </h2>
+
+    <p class="text-lg mb-8 text-center max-w-lg">
+        Suscríbete para recibir citas icónicas de Homer y los mejores datos
+        curiosos, ¡directos a tu buzón!
+    </p>
+
+    <form class="flex flex-col sm:flex-row gap-4 w-full max-w-md">
+        <input
+            type="email"
+            placeholder="Introduce tu e-mail aquí..."
+            required
+            class="flex-grow p-3 rounded-lg border-4 border-simpsons-negro text-lg focus:ring-4 focus:ring-simpsons-amarillo"
+        />
+
+        <button
+            type="submit"
+            class="bg-simpsons-rosa-dona text-white text-2xl py-3 px-6 rounded-full border-4 border-simpsons-negro shadow-simpsons-pulsar hover:bg-pink-600 transition duration-300"
+        >
+            ¡D'OH! ¡DAME LA CITA!
+        </button>
+    </form>
+</section>
+
+<style>
+    .shadow-simpsons-pulsar {
+        box-shadow: 6px 6px 0px 0px #000000;
+    }
+
+    .shadow-simpsons-pulsar:hover {
+        box-shadow: 3px 3px 0px 0px #000000;
+        transform: translate(3px, 3px);
+    }
+</style>
