@@ -1,3 +1,42 @@
-<section>
-    
-</section>
+---
+import HeroLogo from "@/components/HeroLogo.astro";
+---
+
+<footer
+    class="w-full border-simpsons-negro border-t-2 flex flex-col items-center justify-center py-4 px-2 text-center space-y-6"
+>
+    <HeroLogo class="w-28 h-auto" />
+
+    <nav>
+        <ul
+            class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-base font-medium"
+        >
+            <li><a href="#">Hero</a></li>
+            <li><a href="#">Info</a></li>
+            <li><a href="#">Characters</a></li>
+            <li><a href="#">Episodes</a></li>
+            <li><a href="#">Locations</a></li>
+        </ul>
+    </nav>
+
+    <div class="flex flex-col items-center text-center space-y-2 pt-4 border-simpsons-negro/50 border-t w-full max-w-2xl">
+        <span class="text-sm">
+            Built by <a
+                href="https://github.com/SebastianGarroDelRio"
+                class="underline hover:no-underline">SebastianG</a
+            >
+        </span>
+        <span class="text-xs max-w-md">
+            This project uses data from The Simpsons API built by <a
+                href="https://github.com/Facug03"
+                class="underline hover:no-underline">FacuG03</a
+            >
+        </span>
+        <span class="text-xs max-w-md text-gray-700">
+            This project uses data from <a
+                href="https://simpsons.fandom.com/wiki/Simpsons_Wiki"
+                class="underline hover:no-underline">The Simpsons Wiki</a
+            > under the Creative Commons Attribution-ShareAlike License (CC BY-SA).
+        </span>
+    </div>
+</footer>
