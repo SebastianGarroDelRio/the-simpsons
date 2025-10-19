@@ -2,6 +2,15 @@
 import HeroLogo from "@/components/HeroLogo.astro";
 ---
 
-<section class="flex flex-col justify-center items-center">
+<section id="background-hero" class="flex flex-col justify-center items-center">
     <HeroLogo class="w-96 h-auto" />
 </section>
+
+<style>
+    #background-hero {
+        background-image: url("/public/background.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+</style>
