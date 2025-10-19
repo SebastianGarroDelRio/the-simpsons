@@ -4,12 +4,14 @@ import Hero from "@/sections/Hero.astro";
 import Info from "@/sections/Info.astro";
 import Characters from "@/sections/Characters.astro";
 import Episodes from "@/sections/Episodes.astro";
+import Header from "@/sections/Header.astro";
 import Footer from "@/sections/Footer.astro";
 import DonutScroll from "@/sections/DonutScroll.astro";
 import "@/styles/global.css";
 ---
 
 <Layout tittle="The Simpsons Quotes">
+	<Header />
 	<Hero />
 	<main style="text-align: center; margin: 2rem auto; max-width: 900px;">
 		<Info />
