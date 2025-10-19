@@ -1,0 +1,66 @@
+---
+import DonutScrollToTop from "@/components/DonutScrollToTop.astro";
+---
+
+<div
+    id="dona"
+    style="--rotation: 0deg;"
+    class="w-16 h-16 fixed bottom-4 right-4 z-50 transition-opacity duration-300 opacity-0 pointer-events-none"
+>
+    <DonutScrollToTop />
+</div>
+
+<style>
+    #dona {
+        transform: rotate(var(--rotation));
+        transition: opacity 0.3s, transform 0.1s;
+        cursor: pointer;
+    }
+
+    .visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+</style>
+
+<script>
+    const container = document.getElementById('dona');
+    const scrollThreshold = 200;
+
+    let lastScrollY = window.scrollY;
+    let currentRotation = 0;
+    const rotationFactor = 0.5;
+
+    function toggleVisibility() {
+        if (!container) return;
+
+        const currentScrollY = window.scrollY;
+        if (window.scrollY > scrollThreshold) {
+            container?.classList.add('visible');
+        } else {
+            container?.classList.remove('visible');
+        }
+
+        if (currentScrollY !== lastScrollY) {
+            const scrollDelta = currentScrollY - lastScrollY;
+            currentRotation += scrollDelta * rotationFactor;
+            container.style.setProperty('--rotation', `${currentRotation}deg`);
+        }
+        lastScrollY = currentScrollY;
+    }
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    toggleVisibility();
+    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('load', toggleVisibility);
+
+    if (container) {
+        container.addEventListener('click', scrollToTop)
+    }
+</script>
