@@ -1,0 +1,19 @@
+---
+import HeroLogo from "@/components/HeroLogo.astro";
+---
+
+<header class="w-full flex justify-between items-center py-4 px-4 bg-white">
+    <HeroLogo class="w-24 h-auto" />
+    <nav class="hidden md:flex">
+        <ul
+            class="flex justify-center gap-x-6 gap-y-2 text-lg text-black"
+        >
+            <li><a href="#" class="hover:text-yellow-500 transition duration-150">Hero</a></li>
+            <li><a href="#" class="hover:text-yellow-500 transition duration-150">Info</a></li>
+            <li><a href="#" class="hover:text-yellow-500 transition duration-150">Characters</a></li>
+            <li><a href="#" class="hover:text-yellow-500 transition duration-150">Episodes</a></li>
+            <li><a href="#" class="hover:text-yellow-500 transition duration-150">Locations</a></li>
+        </ul>
+    </nav>
+    <HeroLogo class="w-24 h-auto" />
+</header>
