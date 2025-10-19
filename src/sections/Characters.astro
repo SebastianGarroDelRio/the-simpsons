@@ -1,10 +1,26 @@
-<h1 class="uppercase">Personajes de Los Simpsons</h1>
-<div
-    id="characters"
-    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem;"
->
+<div class="container mx-auto px-4 py-8">
+	<h1
+		class="uppercase text-[30px] font-black text-black text-center mb-10"
+	>
+		Personajes de Los Simpsons
+	</h1>
+	<div
+		id="characters"
+		class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center"
+	>
+	</div>
+	<div class="text-center mt-8">
+		<button
+			id="loadMore"
+			class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg
+            border-4 border-black shadow-[4px_4px_0px_0px_#000]
+             hover:bg-blue-700 hover:shadow-[2px_2px_0px_0px_#000] transition-all duration-150"
+			disabled
+		>
+			Cargar más
+		</button>
+	</div>
 </div>
-<button id="loadMore" style="margin-top: 2rem;">Cargar mas</button>
 
 <script is:inline>
 	let currentPage = 1;
@@ -17,26 +33,39 @@
 
 		const container = document.getElementById("characters");
 
-		data.results.slice(0,4).forEach((char) => {
-		const div = document.createElement("div");
-		div.style.border = "2px solid #fdd835";
-		div.style.borderRadius = "10px";
-		div.style.padding = "1rem";
-		div.style.background = "#fff8e1";
-		div.style.textAlign = "center";
-		div.style.width = "200px";
-		div.style.margin = "1rem";
+		data.results.slice(0, 4).forEach((char) => {
+			const div = document.createElement("div");
+			div.className = `
+			character-card 
+            w-full max-w-xs p-4 rounded-xl text-center 
+            bg-amber-50 border-4 border-black 
+            shadow-[6px_6px_0px_0px_#000] 
+            hover:-translate-x-1 hover:-translate-y-1 
+            hover:shadow-[10px_10px_0px_0px_#000] 
+            transition-all duration-150 cursor-pointer 
+            font-sans
+			`;
 
-		div.innerHTML = `
-        <img src="https://cdn.thesimpsonsapi.com/500${char.portrait_path}" 
-		alt="${char.name}" 
-		style="width: 100%; border-radius: 10px;">
-        <h3>${char.name}</h3>
-        <p><strong>Edad:</strong> ${char.age ?? "Desconocida"}</p>
-    	<p><strong>Ocupación:</strong> ${char.occupation ?? "Desconocida"}</p>
-		<p><strong>Status:</strong> ${char.status ?? "Desconocida"}</p>
-		`;
-		//<p><strong>Frases:</strong> ${char.phrases ?? "Desconocida"}</p>
+			const imagePath = `https://cdn.thesimpsonsapi.com/500${char.portrait_path}`;
+			const age = char.age ?? "Desconocida";
+			const occupation = char.occupation ?? "Desconocida";
+			const status = char.status ?? "Desconocida";
+
+			div.innerHTML = `
+            <img src="${imagePath}" 
+            alt="${char.name}"
+            class="w-full max-w-[150px] h-auto mx-auto rounded-lg border-2 border-black object-cover mb-3">
+            <h3 class="text-xl font-extrabold text-black mb-1">${char.name.toUpperCase()}</h3>
+            <p class="text-sm font-semibold text-black">
+                <span class="font-bold">Edad:</span> ${age}
+            </p>
+            <p class="text-sm text-black">
+                <span class="font-bold">Ocupación:</span> ${occupation}
+            </p>
+            <p class="text-sm text-black">
+                <span class="font-bold">Status:</span> ${status}
+            </p>
+            `;
 
 			container.appendChild(div);
 		});
